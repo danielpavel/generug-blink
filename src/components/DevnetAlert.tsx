@@ -3,7 +3,7 @@ import { TriangleAlertIcon } from "lucide-react";
 
 export function DevnetAlert() {
   return (
-    <Alert variant={"caution"} className="max-w-md">
+    <Alert variant={"default"} className="max-w-md">
       <TriangleAlertIcon className="size-5" />
       <AlertTitle>Devnet ONLY</AlertTitle>
       <AlertDescription>
