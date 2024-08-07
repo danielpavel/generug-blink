@@ -270,18 +270,22 @@ async function generatePixelArt(hash: string): Promise<Buffer> {
 export async function savePixelArt(
   filename: string,
   randomHash?: string,
-): Promise<void> {
+): Promise<Buffer> {
   const hash = randomHash ?? generateRandomHex();
   const imageData = await generatePixelArt(hash);
 
-  const filePath = path.join(process.cwd(), "public", "generated", filename);
+  if (process.env.NODE_ENV !== "production") {
+    const filePath = path.join(process.cwd(), "public", "generated", filename);
 
-  // Ensure the directory exists
-  await fs.mkdir(path.dirname(filePath), { recursive: true });
+    // Ensure the directory exists
+    await fs.mkdir(path.dirname(filePath), { recursive: true });
 
-  await fs.writeFile(filePath, imageData);
+    await fs.writeFile(filePath, imageData);
 
-  console.log(`Pixel art saved as ${filename}`);
+    console.log(`Pixel art saved as ${filename}`);
+  }
+
+  return imageData;
 }
 
 export async function deletePixelArt(filename: string) {

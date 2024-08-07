@@ -38,16 +38,25 @@ umi.use(mplTokenMetadata());
 
 const uploader = createBundlrUploader(umi);
 
-export async function uploadImage({ imageFile }: { imageFile: string }) {
+export async function uploadImage({ image }: { image: string | Buffer }) {
   try {
-    const filePath = path.join(process.cwd(), "public", "generated", imageFile);
+    let imgBuffer: Buffer;
 
-    //1. Load image
-    const imgFile = await readFile(filePath);
+    if (image instanceof Buffer) {
+      // We're on production, so we upload image from buffer.
+      imgBuffer = image;
+    } else if (typeof image === "string") {
+      const filePath = path.join(process.cwd(), "public", "generated", image);
+
+      //1. Load image
+      imgBuffer = await readFile(filePath);
+    } else {
+      throw Error("Invalid image type");
+    }
 
     //2. Convert image to generic file.
     const imageConverted = createGenericFile(
-      new Uint8Array(imgFile),
+      new Uint8Array(imgBuffer),
       "image/png",
     );
 

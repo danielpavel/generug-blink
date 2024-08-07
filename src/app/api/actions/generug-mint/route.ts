@@ -49,12 +49,12 @@ export const POST = async (req: Request) => {
 
     const hash = generateRandomHex();
     const filename = `./generated/generug-${hash}.png`;
-    await savePixelArt(filename);
+    const img = await savePixelArt(filename);
 
     // console.log(`Pixel art saved as ${filename}`);
 
     const imgUri = await uploadImage({
-      imageFile: filename,
+      image: process.env.NODE_ENV === "production" ? img : filename,
     });
 
     const metadataURI = await uploadMetadata({
@@ -78,7 +78,9 @@ export const POST = async (req: Request) => {
     // console.log(`[GeneRUG POST] with payload: ${JSON.stringify(payload)}`);
 
     // Regardless of the transaction status, we delete the rug.
-    await deletePixelArt(filename);
+    if (process.env.NODE_ENV !== "production") {
+      await deletePixelArt(filename);
+    }
 
     return Response.json(payload, { headers });
   } catch (err) {
