@@ -24,33 +24,36 @@ export default function Home() {
       <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
         GeneRUG Blink
       </h2>
-      <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-        mint rare™ and exotic™ rugs via Solana Blinks and Actions
-      </p>
 
-      <div className="mx-4 grid justify-center grid-cols-1 max-w-md">
-        {actionCards.map((item, key) => (
-          <Link key={key} href={item.href} className="group" target="_blank">
-            <Card className="rounded-2xl group-hover:border-primary shadow-xl">
-              <CardHeader>
-                <Image
-                  src={"/rugs.webp"}
-                  width={512}
-                  height={512}
-                  alt="rugs"
-                ></Image>
-                <CardTitle className="space-y-3">
-                  <span className="block font-bold group-hover:text-pretty">
-                    {item.title}
-                  </span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <p className="text-muted-foreground">{item.description}</p>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+      <div>
+        <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+          mint rare™ and exotic™ rugs via Solana Blinks and Actions
+        </p>
+
+        <div className="mx-4 grid justify-center grid-cols-1 max-w-md pt-6">
+          {actionCards.map((item, key) => (
+            <Link key={key} href={item.href} className="group" target="_blank">
+              <Card className="rounded-2xl group-hover:border-primary shadow-xl">
+                <CardHeader>
+                  <Image
+                    src={"/rugs.webp"}
+                    width={512}
+                    height={512}
+                    alt="rugs"
+                  ></Image>
+                  <CardTitle className="space-y-3">
+                    <span className="block font-bold group-hover:text-pretty">
+                      {item.title}
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <p className="text-muted-foreground">{item.description}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
 
       <div className="w-full border-t border-t-black">
