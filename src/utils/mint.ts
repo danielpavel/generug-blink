@@ -13,8 +13,6 @@ import {
   mplTokenMetadata,
 } from "@metaplex-foundation/mpl-token-metadata";
 
-import wallet from "../wallet/wba-wallet.json";
-
 import { clusterApiUrl, PublicKey } from "@solana/web3.js";
 
 import { irysUploader } from "@metaplex-foundation/umi-uploader-irys";
@@ -28,7 +26,9 @@ import { getAssociatedTokenAddress } from "@solana/spl-token";
 
 const umi = createUmi(clusterApiUrl("devnet"));
 
-let keypair = umi.eddsa.createKeypairFromSecretKey(new Uint8Array(wallet));
+let keypair = umi.eddsa.createKeypairFromSecretKey(
+  new Uint8Array(JSON.parse(process.env.WALLET || "[]")),
+);
 
 const myKeypairSigner = createSignerFromKeypair(umi, keypair);
 
