@@ -31,7 +31,7 @@ export default function Home() {
 
       <DevnetAlert />
 
-      <div className="mx-4 grid justify-center grid-cols-1 max-w-md pt-6">
+      <div className="mx-4 grid justify-center grid-cols-1 max-w-md py-6">
         {actionCards.map((item, key) => (
           <Link key={key} href={item.href} className="group" target="_blank">
             <Card className="rounded-2xl group-hover:border-primary shadow-xl">
@@ -63,7 +63,7 @@ export default function Home() {
             <span>
               <Link
                 className="hover:underline hover:cursor-pointer"
-                href={"htps://x.com/_danielpavel"}
+                href={"https://x.com/_danielpavel"}
                 target="_blank"
                 prefetch={false}
               >
@@ -72,7 +72,7 @@ export default function Home() {
             </span>
           </p>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-sm sm:leading-7">
-            Insipred by {""}
+            Insipred from {""}
             <span>
               <Link
                 className="hover:underline hover:cursor-pointer"
