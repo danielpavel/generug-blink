@@ -75,7 +75,7 @@ export const POST = async (req: Request) => {
       },
     });
 
-    // console.log(`[GeneRUG POST] with payload: ${JSON.stringify(payload)}`);
+    console.log(`[GeneRUG POST] with payload: ${JSON.stringify(payload)}`);
 
     // Regardless of the transaction status, we delete the rug.
     if (process.env.NODE_ENV !== "production") {

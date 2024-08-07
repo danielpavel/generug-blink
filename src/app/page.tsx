@@ -1,21 +1,21 @@
 import { DevnetAlert } from "@/components/DevnetAlert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileTextIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+const localLink =
+  "https://dial.to/devnet?action=solana-action%3Ahttp%3A%2F%2Flocalhost%3A3001%2Fapi%2Factions%2Fgenerug-mint";
 
 const actionCards: Array<{
   title: string;
   href: string;
   description: React.ReactNode;
-  icon: React.ReactNode;
 }> = [
   {
     title: "GeneRUG Mint",
-    href: "https://dial.to/devnet?action=solana-action%3Ahttp%3A%2F%2Fgenerug-blink-nu.vercel.app%3A3001%2Fapi%2Factions%2Fgenerug-mint",
+    href: "https://dial.to/devnet?action=solana-action%3Ahttps%3A%2F%2Fgenerug-blink-nu.vercel.app%2Fapi%2Factions%2Fgenerug-mint",
     description:
       "Mint a one-of-a-kind digital tapestry, woven from the threads of cryptographic randomness.",
-    icon: <FileTextIcon className="size-12" />,
   },
 ];
 
