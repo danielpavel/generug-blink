@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileTextIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const actionCards: Array<{
@@ -10,27 +11,34 @@ const actionCards: Array<{
 }> = [
   {
     title: "GeneRUG Mint",
-    href: "/memo",
-    description: "Send a simple message on-chain using an SPL Memo.",
+    href: "https://dial.to/?action=solana-action%3Ahttp%3A%2F%2Flocalhost%3A3001%2Fapi%2Factions%2Fgenerug-mint",
+    description:
+      "Mint a one-of-a-kind digital tapestry, woven from the threads of cryptographic randomness.",
     icon: <FileTextIcon className="size-12" />,
   },
 ];
 
 export default function Home() {
   return (
-    <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-6 text-center">
+    <div className="mx-auto h-screen my-14 flex max-w-[58rem] flex-col items-center justify-between space-y-6 text-center">
       <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
-        GeneRUG Blinks App
+        GeneRUG Blink
       </h2>
       <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-        This project lets you mint your GeneRUG via a Solana Blink.
+        mint rare™ and exotic™ rugs via Solana Blinks and Actions
       </p>
 
-      <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+      <div className="mx-4 grid justify-center grid-cols-1 max-w-md">
         {actionCards.map((item, key) => (
-          <Link key={key} href={item.href} className="group">
-            <Card className="group-hover:border-primary">
+          <Link key={key} href={item.href} className="group" target="_blank">
+            <Card className="rounded-2xl group-hover:border-primary shadow-xl">
               <CardHeader>
+                <Image
+                  src={"/rugs.webp"}
+                  width={512}
+                  height={512}
+                  alt="rugs"
+                ></Image>
                 <CardTitle className="space-y-3">
                   <span className="block font-bold group-hover:text-pretty">
                     {item.title}
@@ -43,6 +51,37 @@ export default function Home() {
             </Card>
           </Link>
         ))}
+      </div>
+
+      <div className="w-full border-t border-t-black">
+        <div className="flex justify-between">
+          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-sm sm:leading-7">
+            Made with 💚 by {""}
+            <span>
+              <Link
+                className="hover:underline hover:cursor-pointer"
+                href={"htps://x.com/_danielpavel"}
+                target="_blank"
+                prefetch={false}
+              >
+                Daniel Pavel
+              </Link>
+            </span>
+          </p>
+          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-sm sm:leading-7">
+            Insipred by {""}
+            <span>
+              <Link
+                className="hover:underline hover:cursor-pointer"
+                href={"https://github.com/deanmlittle/generug"}
+                target="_blank"
+                prefetch={false}
+              >
+                deanmlittle&apos;s generug
+              </Link>
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

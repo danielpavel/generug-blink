@@ -23,7 +23,7 @@ export const GET = (req: Request) => {
   );
 
   const payload: ActionGetResponse = {
-    icon: new URL("/solana_devs.jpeg", new URL(req.url).origin).toString(),
+    icon: new URL("solana_devs.jpg", new URL(req.url).origin).toString(),
     title: "On Chain Memo",
     description: "Send a message on-chain using a Memo",
     label: "Send Memo",
