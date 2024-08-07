@@ -21,7 +21,7 @@ export const GET = (req: Request) => {
     title: "Mint a geneRUG",
     description:
       "Mint a one-of-a-kind digital tapestry, woven from the threads of cryptographic randomness.",
-    label: "Mint a geneRUG",
+    label: "Mint geneRUG",
     icon: new URL("rugs.webp", new URL(req.url).origin).toString(),
   };
 
