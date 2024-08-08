@@ -7,6 +7,7 @@ import {
   generateSigner,
   percentAmount,
   createGenericFile,
+  signTransaction,
 } from "@metaplex-foundation/umi";
 import {
   createNft,
@@ -129,21 +130,33 @@ export async function mintTransaction({
       toWeb3JsPublicKey(mint.publicKey),
       account,
     );
-    const owner = fromWeb3JsPublicKey(account);
+    const feePayer = fromWeb3JsPublicKey(account);
 
-    const signedTx = await createNft(umi, {
+    const txBuilder = createNft(umi, {
       name: `Generug ${randomHex.slice(0, 4)}...${randomHex.slice(
         randomHex.length - 4,
         randomHex.length,
       )}`,
       mint,
       token: fromWeb3JsPublicKey(ata),
-      tokenOwner: owner,
+      tokenOwner: feePayer,
       authority: myKeypairSigner,
       sellerFeeBasisPoints: percentAmount(5),
       isCollection: false,
       uri,
-    }).buildAndSign(umi);
+    });
+
+    const transaction = umi.transactions.create({
+      version: 0,
+      blockhash: (await umi.rpc.getLatestBlockhash()).blockhash,
+      instructions: txBuilder.getInstructions(),
+      payer: feePayer,
+    });
+
+    const signedTx = await signTransaction(transaction, [
+      mint,
+      myKeypairSigner,
+    ]);
 
     return signedTx;
   } catch (error) {
